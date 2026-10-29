@@ -3,8 +3,9 @@ import { Platform, SafeAreaView, StyleSheet } from "react-native";
 
 import { ThemedText } from "@/components/themed-text";
 import { FieldGroup, Host, Icon, Row, Spacer, Text } from "@expo/ui";
+import { DatePicker } from '@expo/ui/swift-ui';
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 
 const CHEVRON = Icon.select({
   ios: "chevron.right",
