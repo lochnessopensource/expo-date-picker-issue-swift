@@ -1,21 +1,11 @@
 import * as Device from "expo-device";
-import { Platform, SafeAreaView, StyleSheet } from "react-native";
+import {Platform, Pressable, SafeAreaView, StyleSheet, Text} from "react-native";
 
 import { ThemedText } from "@/components/themed-text";
-import { FieldGroup, Host, Icon, Row, Spacer, Text } from "@expo/ui";
-import { DatePicker } from '@expo/ui/swift-ui';
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 
-const CHEVRON = Icon.select({
-  ios: "chevron.right",
-  android: require("@expo/material-symbols/chevron_right.xml"),
-});
 
-const INFO = Icon.select({
-  ios: "info",
-  android: require("@expo/material-symbols/info.xml"),
-});
 
 function getDevMenuHint() {
   if (Platform.OS === "web") {
@@ -37,32 +27,12 @@ function getDevMenuHint() {
 }
 
 export default function HomeScreen() {
-  const [testDate, setTestDate] = useState(new Date(2024, 4, 31));
   const router = useRouter();
-  const [serviceDate, setServiceDate] = React.useState(new Date());
-  const [shouldShowServiceDatePicker, setShouldShowServiceDatePicker] =
-    React.useState(false);
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Host style={{ flex: 1 }}>
-        <FieldGroup>
-          <FieldGroup.Section title="Support">
-            <Row alignment="center" onPress={() => {}}>
-              <Text>Test Date</Text>
-              <Spacer flexible />
-              {Platform.OS === "ios" && (
-                <DatePicker
-                  selection={testDate}
-                  displayedComponents={["date"]}
-                  onDateChange={(date) => {
-                    setTestDate(date);
-                  }}
-                />
-              )}
-            </Row>
-          </FieldGroup.Section>
-        </FieldGroup>
-      </Host>
+      <Pressable onPress={() => router.navigate("/expense-details")}>
+      <Text>Go to details</Text>
+      </Pressable>  
     </SafeAreaView>
   );
 }
